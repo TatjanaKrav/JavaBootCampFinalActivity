@@ -1,21 +1,16 @@
 package sef.ATestTask.FirstActivity;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.util.*;
-import java.util.Map.Entry;
-import java.util.stream.*;
 
-public class FirstActivity {
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeMap;
 
-	public static void main(String[] args) throws Exception {
+public class FirstActivity1 {
 
-		String url = "jdbc:mysql://localhost:3306/employees"; 
-		String user = "root";
-		String pass = "tanjandrej";
+	public static void main(String[] args) {
 		
 		Map<Integer, Employee> employeemap = new HashMap<Integer, Employee>(); 
-	
+		
 		Employee e1 = new Employee("Tatjana", "Kravc", 33, 1, "Auditor", "Java", 2000);
 		Employee e2 = new Employee("Niks", "Brigg", 25, 2, "Realtor", "House", 1500);
 		Employee e3 = new Employee("Toms", "Darbin", 28, 3, "Programmer", "JavaC", 3000);
@@ -31,23 +26,6 @@ public class FirstActivity {
 		employeemap.put(e5.getEmpId(), e5);
 		employeemap.put(e6.getEmpId(), e6);
 		employeemap.put(e7.getEmpId(), e7);
-		
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection con = DriverManager.getConnection(url, user, pass);
-	
-		String query = "insert into employees values (?,?,?,?,?,?,?)";
-		PreparedStatement st = con.prepareStatement(query);	
-		st.setInt(1, e1.getEmpId());
-		st.setString(2, e1.getFirstName());
-		st.setString(3, e1.getSecondName());
-		st.setInt(4, e1.getAge());
-		st.setString(5, e1.getJobTitle());
-		st.setString(6, e1.getCompanyName());
-		st.setDouble(7, e1.getSalary());
-		int count = st.executeUpdate();
-		
-		st.close();
-		con.close();
 		
 		Iterator<Integer> iterator = employeemap.keySet().iterator(); 
 		while (iterator.hasNext()) {	
@@ -80,14 +58,10 @@ public class FirstActivity {
 		Student s = new Student();
 		s.setSchoolName("Riga Technical University");
 		System.out.println(s.announce());
-		
-		
+
 	}
+
 }
 
-
-
-
-
-
-	
+//TODO 4 Create method for full change of employee information
+		// for example some employee change his work
